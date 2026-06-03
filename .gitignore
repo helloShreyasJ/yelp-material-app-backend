@@ -1,0 +1,21 @@
+# --- Maven Build Artifacts ---
+target/
+*.jar
+*.war
+*.ear
+
+# --- Eclipse IDE Specific Files ---
+.settings/
+.project
+.classpath
+.metadata/
+bin/
+*.tmp
+*.bak
+*.userlibraries
+
+# --- OS / System Logs ---
+.DS_Store
+Thumbs.db
+log/
+*.log

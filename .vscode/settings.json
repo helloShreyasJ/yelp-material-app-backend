@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": [
+        "bin/src/main/java",
+        "src/main/java"
+    ],
+    "java.compile.nullAnalysis.mode": "disabled"
+}
