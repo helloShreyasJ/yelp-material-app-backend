@@ -22,7 +22,7 @@ public class RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
-    private Restaurant getRestaurantById(Long id) {
+    public Restaurant getRestaurantById(Long id) {
         return restaurantRepository.findById(id).orElseThrow();
     }
 

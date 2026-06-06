@@ -34,8 +34,8 @@ public class RestaurantController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Restaurant> restaurantDetail(@PathVariable Long id) {
-        Restaurant mockRestaurant = new Restaurant(id, "Salsa", "Galway", 2);
-        return ResponseEntity.status(HttpStatus.OK).body(mockRestaurant);    }
+        Restaurant restaurant = restaurantService.getRestaurantById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(restaurant);    }
     
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
