@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yelp.backend.model.Restaurant;
+import com.yelp.backend.dto.RestaurantDto;
 import com.yelp.backend.service.RestaurantService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,27 +28,28 @@ public class RestaurantController {
     private final RestaurantService restaurantService;
 
     @GetMapping
-    public List<Restaurant> getAllRestaurants() {
-        return restaurantService.getAllRestaurants();
+    public ResponseEntity<List<RestaurantDto>> getAllRestaurants() {
+        return ResponseEntity.ok(restaurantService.getAllRestaurants());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Restaurant> restaurantDetail(@PathVariable Long id) {
-        Restaurant restaurant = restaurantService.getRestaurantById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(restaurant);    }
+    public ResponseEntity<RestaurantDto> restaurantDetail(@PathVariable Long id) {
+        RestaurantDto restaurant = restaurantService.getRestaurantById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(restaurant);
+    }
     
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<RestaurantDto> createRestaurant(@RequestBody RestaurantDto restaurant) {
         System.out.println(restaurant.getId());
         System.out.println(restaurant.getName());
-        Restaurant restaurantToAdd = restaurantService.addRestaurant(restaurant);
+        RestaurantDto restaurantToAdd = restaurantService.addRestaurant(restaurant);
         return ResponseEntity.status(HttpStatus.CREATED).body(restaurantToAdd);
     }
 
     @PutMapping("/{id}/update")
-    public ResponseEntity<Restaurant> updateRestaurant(@RequestBody Restaurant restaurant, @PathVariable Long id) {
-        Restaurant restaurantToUpdate = restaurantService.updateRestaurant(id, restaurant);
+    public ResponseEntity<RestaurantDto> updateRestaurant(@RequestBody RestaurantDto restaurant, @PathVariable Long id) {
+        RestaurantDto restaurantToUpdate = restaurantService.updateRestaurant(id, restaurant);
         return ResponseEntity.ok(restaurantToUpdate);
     }
 } 
