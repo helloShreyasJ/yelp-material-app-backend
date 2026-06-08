@@ -1,6 +1,7 @@
 package com.yelp.backend.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,8 +56,8 @@ public class RestaurantController {
     }
 
     @DeleteMapping("/{id}/delete")
-    public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
+    public ResponseEntity<Map<String, String>> deleteRestaurant(@PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
-        return new ResponseEntity<>("Restaurant Deleted", HttpStatus.OK);
+        return ResponseEntity.ok(Map.of("message", "Restaurant Deleted")); 
     }
 } 
