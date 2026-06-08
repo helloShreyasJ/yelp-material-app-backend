@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,5 +52,11 @@ public class RestaurantController {
     public ResponseEntity<RestaurantDto> updateRestaurant(@RequestBody RestaurantDto restaurant, @PathVariable Long id) {
         RestaurantDto restaurantToUpdate = restaurantService.updateRestaurant(id, restaurant);
         return ResponseEntity.ok(restaurantToUpdate);
+    }
+
+    @DeleteMapping("/{id}/delete")
+    public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
+        restaurantService.deleteRestaurant(id);
+        return new ResponseEntity<>("Restaurant Deleted", HttpStatus.OK);
     }
 } 

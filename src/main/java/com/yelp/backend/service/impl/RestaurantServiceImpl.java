@@ -65,4 +65,10 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurant.setPriceRange(dto.getPriceRange());
         return restaurant;
     }
+
+    @Override
+    public void deleteRestaurant(Long id) {
+        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(() -> new RuntimeException("Restaurant not found with id: " + id));
+        restaurantRepository.delete(restaurant);
+    }
 }
