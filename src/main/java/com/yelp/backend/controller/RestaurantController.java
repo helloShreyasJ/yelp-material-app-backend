@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/restaurants")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://dashing-duckanoo-556fe4.netlify.app")
 @RequiredArgsConstructor
 public class RestaurantController {
     private final RestaurantService restaurantService;
