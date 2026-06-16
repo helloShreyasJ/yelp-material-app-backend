@@ -51,7 +51,8 @@ public class RestaurantController {
 
     @PutMapping("/{id}/update")
     public ResponseEntity<RestaurantDto> updateRestaurant(@RequestBody RestaurantDto restaurant, @PathVariable Long id) {
-        RestaurantDto restaurantToUpdate = restaurantService.updateRestaurant(id, restaurant);
+        // RestaurantDto restaurantToUpdate = restaurantService.updateRestaurant(id, restaurant);
+        RestaurantDto restaurantToUpdate = restaurantService.updateRestaurantSecurely(id, restaurant);
         return ResponseEntity.ok(restaurantToUpdate);
     }
 

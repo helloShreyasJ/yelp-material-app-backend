@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yelp.backend.dto.RestaurantDto;
 import com.yelp.backend.model.Restaurant;
@@ -36,9 +37,22 @@ public class RestaurantServiceImpl implements RestaurantService {
         return convertToDto(savedEntity);
     }
     
+    // @Override
+    // public RestaurantDto updateRestaurant(Long id, RestaurantDto newRestaurantData) {
+    //     Restaurant restaurantToUpdate = restaurantRepository.findById(id).orElseThrow(() -> new RuntimeException("Restaurant not found with id: " + id));
+                
+    //     restaurantToUpdate.setName(newRestaurantData.getName());
+    //     restaurantToUpdate.setLocation(newRestaurantData.getLocation());
+    //     restaurantToUpdate.setPriceRange(newRestaurantData.getPriceRange());
+        
+    //     Restaurant savedEntity = restaurantRepository.save(restaurantToUpdate);
+    //     return convertToDto(savedEntity);
+    // }
+
     @Override
-    public RestaurantDto updateRestaurant(Long id, RestaurantDto newRestaurantData) {
-        Restaurant restaurantToUpdate = restaurantRepository.findById(id).orElseThrow(() -> new RuntimeException("Restaurant not found with id: " + id));
+    @Transactional
+    public RestaurantDto updateRestaurantSecurely(Long id, RestaurantDto newRestaurantData) {
+        Restaurant restaurantToUpdate = restaurantRepository.findByIdWithPessimisticLock(id).orElseThrow(() -> new RuntimeException("Restaurant not found with id: " + id));
                 
         restaurantToUpdate.setName(newRestaurantData.getName());
         restaurantToUpdate.setLocation(newRestaurantData.getLocation());
