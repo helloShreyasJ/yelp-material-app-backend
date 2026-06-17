@@ -4,6 +4,9 @@ Cloud-deployed RESTful API built with Spring Boot and PostgreSQL, designed to se
 **Base API URL:** https://yelp-material-app-backend.onrender.com/api
 
 ## Architecture & Highlights
+| ER Diagram | High Level and Cloud Infrastructure Diagram |
+| :---: | :---: |
+| <img src="img/entity-relationship-diagram.png" width="300" /> | <img src="img/high-level-cloud-infrastructure-diagram.png" width="500" /> |
 * **Concurrency Control:** Implemented **Pessimistic Locking** (`SELECT ... FOR UPDATE`) at the database level to prevent race conditions and lost updates when multiple admins edit the same restaurant simultaneously. Includes a 3-second timeout failsafe to prevent database deadlocks.
 * **Containerization:** Fully containerized using Docker for consistent cross-environment execution.
 * **Cloud Database:** Hosted on Neon (Serverless PostgreSQL).
